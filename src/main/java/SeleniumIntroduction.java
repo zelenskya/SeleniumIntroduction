@@ -1,8 +1,10 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
 import java.util.ArrayList;
 
 public class SeleniumIntroduction {
@@ -11,6 +13,7 @@ public class SeleniumIntroduction {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\Selenium_Course\\chromedriver\\chromedriver.exe");
         //WebDriver is an interface; ChromeDriver implements WebDriver
         WebDriver driver_chrome = new ChromeDriver();
+        driver_chrome.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
         //region Firefox
         //System.setProperty("webdriver.gecko.driver","C:\\Users\\User\\Selenium_Course\\chromedriver\\chromedriver.exe");
@@ -23,6 +26,7 @@ public class SeleniumIntroduction {
         //endregion
 
         driver_chrome.get("https://www.ozon.ru/");
+        //driver_chrome.get("https://rahulshettyacademy.com/locatorspractice/");
         System.out.println(driver_chrome.getTitle());
         System.out.println(driver_chrome.getCurrentUrl());
 
@@ -40,6 +44,12 @@ public class SeleniumIntroduction {
         };
         System.out.println(splitted_title_arr.get(0));*/
         //endregion
+
+        //driver_chrome.findElement(By.id("inputUsername")).sendKeys("qwerty");
+        //driver_chrome.findElement(By.name("text")).sendKeys("qwerty");
+        /* Use SelectorsHub plugin to get CSS Selector value */
+        driver_chrome.findElement(By.cssSelector("input[placeholder='Искать на Ozon']")).sendKeys("qwerty");
+
 
         //driver.close();
         driver_chrome.quit();
