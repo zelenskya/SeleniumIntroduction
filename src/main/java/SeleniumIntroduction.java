@@ -1,20 +1,23 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
 import java.util.ArrayList;
 
 public class SeleniumIntroduction {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         //driver's version should be up to date with Chrome's one
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\Selenium_Course\\chromedriver\\chromedriver.exe");
         //WebDriver is an interface; ChromeDriver implements WebDriver
         WebDriver driver_chrome = new ChromeDriver();
-        driver_chrome.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-
+        //wait for an object appeared on the page
+        driver_chrome.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver_chrome.manage().window().maximize();
         //region Firefox
         //System.setProperty("webdriver.gecko.driver","C:\\Users\\User\\Selenium_Course\\chromedriver\\chromedriver.exe");
         //WebDriver driver_firefox = new FirefoxDriver();
@@ -49,8 +52,32 @@ public class SeleniumIntroduction {
         //driver_chrome.findElement(By.name("text")).sendKeys("qwerty");
         /* Use SelectorsHub plugin to get CSS Selector value */
         driver_chrome.findElement(By.cssSelector("input[placeholder='Искать на Ozon']")).sendKeys("qwerty");
+        System.out.println(driver_chrome.findElement(By.className("ui-o4")).getText());
+        /*driver_chrome.findElement(By.linkText("Ozon Travel")).click();
+        Thread.sleep(5000);
+        driver_chrome.findElement(By.xpath("//input[@name='text']")).sendKeys("xpath");
+        driver_chrome.findElement(By.xpath("//form/button")).click();
+        Thread.sleep(5000);
+        //click TOP Fashion
+        driver_chrome.findElement(By.xpath("//*[@id=\"layoutPage\"]/div[1]/header/div[2]/div/ul/li[1]/a")).click(); //just copy xpath from browser's inspect code
+        Thread.sleep(5000);
+        //click Premium
+        driver_chrome.findElement(By.xpath("//*[@id=\"layoutPage\"]/div[1]/header/div[2]/div/ul/li[2]/a")).click();
+        Thread.sleep(5000);
+        driver_chrome.findElement(By.cssSelector("input[name*='te']")).sendKeys("regular expressions");
+        */Thread.sleep(5000);
+        //driver_chrome.findElement(By.xpath("//*[@id=\"stickyHeader\"]/div[4]/div[1]/div/div")).click(); //click Войти
+        Actions actions = new Actions(driver_chrome);
+        WebElement enterIcon = driver_chrome.findElement(By.xpath("//*[@id=\"stickyHeader\"]/div[4]/div[1]/div/div"));
+        actions.moveToElement(enterIcon);
+        WebElement enterAndRegister = driver_chrome.findElement(By.className("u1-b2"));
+        actions.moveToElement(enterAndRegister);
+        actions.click().build().perform();
 
 
+        //driver_chrome.findElement(By.xpath("//*[@id=\"stickyHeader\"]/div[4]/div[1]/div/div")).findElement(By.className("u1-b2")).click();
+        //button tabindex="0" type="button" class="u1-b2"
+        Thread.sleep(3000);
         //driver.close();
         driver_chrome.quit();
     }
