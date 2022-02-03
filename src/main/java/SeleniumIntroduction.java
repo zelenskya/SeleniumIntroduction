@@ -51,8 +51,8 @@ public class SeleniumIntroduction {
         //driver_chrome.findElement(By.id("inputUsername")).sendKeys("qwerty");
         //driver_chrome.findElement(By.name("text")).sendKeys("qwerty");
         /* Use SelectorsHub plugin to get CSS Selector value */
-        driver_chrome.findElement(By.cssSelector("input[placeholder='Искать на Ozon']")).sendKeys("qwerty");
-        System.out.println(driver_chrome.findElement(By.className("ui-o4")).getText());
+        //driver_chrome.findElement(By.cssSelector("input[placeholder='Искать на Ozon']")).sendKeys("qwerty");
+        //System.out.println(driver_chrome.findElement(By.className("ui-o4")).getText());
         /*driver_chrome.findElement(By.linkText("Ozon Travel")).click();
         Thread.sleep(5000);
         driver_chrome.findElement(By.xpath("//input[@name='text']")).sendKeys("xpath");
@@ -67,13 +67,13 @@ public class SeleniumIntroduction {
         driver_chrome.findElement(By.cssSelector("input[name*='te']")).sendKeys("regular expressions");
         */Thread.sleep(5000);
         //driver_chrome.findElement(By.xpath("//*[@id=\"stickyHeader\"]/div[4]/div[1]/div/div")).click(); //click Войти
-        Actions actions = new Actions(driver_chrome);
-        WebElement enterIcon = driver_chrome.findElement(By.xpath("//*[@id=\"stickyHeader\"]/div[4]/div[1]/div/div"));
-        actions.moveToElement(enterIcon);
-        WebElement enterAndRegister = driver_chrome.findElement(By.className("u1-b2"));
-        actions.moveToElement(enterAndRegister);
-        actions.click().build().perform();
 
+        /*String text = driver_chrome.findElement(By.xpath("//*[@id=\"layoutPage\"]/div[1]/div[1]/div/ul/li[1]/div/a/span")).getText();
+        String[] textArray = text.split(" ");*/
+
+        //Absolute xpath (Войти) + following-sibling (Заказы)
+        System.out.println(driver_chrome.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div[4]/div[1]")).getText());
+        System.out.println(driver_chrome.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div[4]/div[1]/following-sibling::div[1]")).getText());
 
         //driver_chrome.findElement(By.xpath("//*[@id=\"stickyHeader\"]/div[4]/div[1]/div/div")).findElement(By.className("u1-b2")).click();
         //button tabindex="0" type="button" class="u1-b2"
