@@ -74,6 +74,8 @@ public class SeleniumIntroduction {
         //Absolute xpath (Войти) + following-sibling (Заказы)
         System.out.println(driver_chrome.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div[4]/div[1]")).getText());
         System.out.println(driver_chrome.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div[4]/div[1]/following-sibling::div[1]")).getText());
+        //Parent, e.g. go up from Войти
+        ///html/body/div[1]/div/div[1]/header/div[1]/div[4]/div[1]/parent::div/parent::div/parent::header
 
         //driver_chrome.findElement(By.xpath("//*[@id=\"stickyHeader\"]/div[4]/div[1]/div/div")).findElement(By.className("u1-b2")).click();
         //button tabindex="0" type="button" class="u1-b2"
