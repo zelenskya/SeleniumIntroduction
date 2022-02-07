@@ -4,7 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.lang.reflect.Array;
 import java.time.Duration;
+import java.util.List;
 
 public class DropDown {
     public static void main(String[] args) throws InterruptedException {
@@ -25,13 +27,27 @@ public class DropDown {
         //endregion
 
         //region dynamic drop-down, a number of passengers
-        driver.get("http://aviasales.ru");
+        /*driver.get("http://aviasales.ru");
         driver.findElement(By.xpath("//*[@class='container_c4b10b6 additional-fields__dropdown-container']")).click();
-        Thread.sleep(2000);
         driver.findElement(By.xpath("//div[@data-test-id='passengers-adults-field']//a[contains(@class,'--increment')]")).click();
-        driver.findElement(By.xpath("//div[@data-test-id='passengers-children-field']//a[contains(@class,'--increment')]")).click();
+        //driver.findElement(By.xpath("//div[@data-test-id='passengers-children-field']//a[contains(@class,'--increment')]")).click();
+        driver.findElement(By.xpath("(//a[contains(@class,'additional-fields__passenger-control --increment')])[2]")).click();
         driver.findElement(By.xpath("//div[@data-test-id='passengers-infants-field']//a[contains(@class,'--increment')]")).click();
+        driver.findElement(By.xpath("//button[@data-test-id='form-submit']")).click();*/
+        //endregion
 
+        //region context-driven drop-down, search field
+        driver.get("http://amazon.com");
+        driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']")).sendKeys("ind");
+        Thread.sleep(2000);
+        List<WebElement> searchElements = driver.findElements(By.xpath("//div[@class='s-suggestion-container']"));
+        for (WebElement item:searchElements){
+            if (item.getText().equals("indoor grill")){
+                item.click();
+            }
+        }
+        Thread.sleep(2000);
+        //endregion
 
     }
 }
