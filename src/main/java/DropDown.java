@@ -47,6 +47,7 @@ public class DropDown {
             }
         }
         Thread.sleep(2000);
+        Thread.sleep(2000);
         //endregion
 
     }
