@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import java.lang.reflect.Array;
 import java.time.Duration;
@@ -34,8 +35,18 @@ public class DropDown {
         driver.findElement(By.xpath("(//a[contains(@class,'additional-fields__passenger-control --increment')])[2]")).click();
         driver.findElement(By.xpath("//div[@data-test-id='passengers-infants-field']//a[contains(@class,'--increment')]")).click();
         driver.findElement(By.xpath("//button[@data-test-id='form-submit']")).click();*/
-        System.out.println(driver.findElement(By.xpath("//label[@class='of_input_checkbox__label']")).isEnabled());
-        driver.findElement(By.xpath("//label[@class='of_input_checkbox__label']")).click();
+        System.out.println(driver.findElement(By.xpath("//label[@for='clicktripz']")).isSelected());
+        System.out.println(driver.findElement(By.xpath("//label[@for='clicktripz']")).isEnabled());
+        //Assert.assertTrue(driver.findElement(By.xpath("//label[@for='clicktripz']")).isSelected());
+        driver.findElement(By.xpath("//label[@for='clicktripz']")).click();
+        System.out.println(driver.findElement(By.xpath("//label[@for='clicktripz']")).isSelected());
+        System.out.println(driver.findElement(By.xpath("//label[@for='clicktripz']")).isEnabled());
+        driver.findElement(By.xpath("//label[@for='clicktripz']")).click();
+        System.out.println(driver.findElement(By.xpath("//label[@for='clicktripz']")).isSelected());
+        System.out.println(driver.findElement(By.xpath("//label[@for='clicktripz']")).isEnabled());
+        Thread.sleep(1000);
+        Assert.assertFalse(driver.findElement(By.xpath("//label[@class='of_input_checkbox__label']")).isSelected());
+        Assert.assertEquals(driver.findElement(By.xpath("//label[@class='of_input_checkbox__label']")).getText(),"Открыть Booking.com в новом окне");
         //endregion
 
         //region context-driven drop-down, search field
